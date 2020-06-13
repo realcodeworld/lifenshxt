@@ -19,8 +19,20 @@
     </script>
 </head>
 <body>
-    <di class="title">Coming soon...</div><br>
+    <div class="title">Coming soon...</div><br>
     <img src="/img/LNSP.jpeg" alt="Life'n'Shxt Crew!" class="responsive" width="100" height="100">
+    <form class="email-form" name="newsletter">
+        <div hidden aria-hidden="true">
+          <label>
+            Don’t fill this out if you're human: 
+            <input name="bot-field" />
+          </label>
+        </div>
+        <div>
+          <input type="email" name="email" placeholder="Email"  id="email" required />
+          <button type="submit" disabled>Subscribe</button>
+        </div>
+      </form>
     <footer>
         <hr>
         <a href="#" class="fa fa-soundcloud"></a>
