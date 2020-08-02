@@ -6,7 +6,7 @@ const processForm = form => {
       body: data,
     })
     .then(() => {
-      console.log(`Posted: ${data}`)
+      console.log(`Posted: ${JSON.stringify(data)}`)
       form.innerHTML = `<div class="form--success">Almost there! Check your inbox for a confirmation e-mail.</div>`;
     })
     .catch(error => {
