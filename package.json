@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lambda-serve": "netlify-lambda serve functions",
+    "lambda-build": "netlify-lambda build functions"
   },
   "repository": {
     "type": "git",
@@ -13,8 +14,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fetch": "^1.1.0",
-    "node-fetch": "^2.6.0",
-    "request": "^2.88.2"
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "netlify-lambda": "^2.0.1",
+    "node-fetch": "^2.6.0"
   }
 }
