@@ -12,6 +12,8 @@ exports.handler = function(event, context, callback) {
         body = JSON.parse(event.body)
         console.log("success")
         console.log(body)
+        console.log(body.email)
+        console.log(body.payload.email)
 
     } catch (e) {
         body = event.body

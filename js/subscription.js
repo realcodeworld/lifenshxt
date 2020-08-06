@@ -8,9 +8,9 @@ const processForm = form => {
       method: 'POST',
       body: data
     })
-    .then(() => {
-      console.log(`Posted: ${JSON.stringify(data)}`)
-      // form.innerHTML = `<div class="form--success">Almost there! Check your inbox for a confirmation e-mail.</div>`;
+    .then(response => {
+      form.innerHTML = `<div class="form--success">Almost there! Check your inbox for a confirmation e-mail.</div>`;
+      console.log(response.json())
     })
     .catch(error => {
       form.innerHTML = `<div class="form--error">Error: ${error}</div>`;
