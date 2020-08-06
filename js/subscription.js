@@ -4,7 +4,7 @@ const processForm = form => {
     console.log(data)
     data.append('form-name', 'newsletter');
 
-    fetch('.netlify/functions/submission-created', {
+    fetch('/', {
       method: 'POST',
       body: data
     })
