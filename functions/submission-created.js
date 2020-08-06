@@ -1,7 +1,7 @@
 const axios = require('axios')
 const { Body } = require('node-fetch')
 require('dotenv').config();
-
+console.log("triggered")
 const EMAIL_TOKEN = process.env.TOKEN
 
 exports.handler = function(event, context, callback) {
@@ -9,12 +9,17 @@ exports.handler = function(event, context, callback) {
     let body = {}
     try {
         body = JSON.parse(event.body)
+        console.log("success")
+        console.log(body)
+
     } catch (e) {
         body = event.body
+        console.log(e)
     }
 
     // Bail if email is missing
     if (!body.email) {
+        console.log("missing email")
         return callback(null, {
         statusCode: 400,
         body: JSON.stringify({
@@ -26,6 +31,8 @@ exports.handler = function(event, context, callback) {
     const bodyToPost = {
         email: body.email
     }
+
+    console.log(bodyToPost)
 
     const url = 'https://api.buttondown.email/v1/subscribers'
     const options = {
