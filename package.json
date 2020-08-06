@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
+    "netlify-cli": "^2.59.0",
     "netlify-lambda": "^2.0.1",
     "node-fetch": "^2.6.0"
   }
