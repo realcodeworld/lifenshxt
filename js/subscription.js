@@ -10,10 +10,11 @@ const processForm = form => {
     })
     .then(response => {
       form.innerHTML = `<div class="form--success">Almost there! Check your inbox for a confirmation e-mail.</div>`;
-      console.log(response.json())
+      console.log(response)
     })
     .catch(error => {
       form.innerHTML = `<div class="form--error">Error: ${error}</div>`;
+      console.log(error)
     })
 }
 
