@@ -36,7 +36,7 @@ exports.handler = function(event, context, callback) {
             console.log(`Submitted to Buttondown: ${bodyToPost.email}`)
             console.log(`Response: ${data}`)
             callback(null, {
-                statusCode: 200,
+                statusCode: 201,
                 body: String(data)
             })
     })
@@ -48,7 +48,7 @@ exports.handler = function(event, context, callback) {
             console.log("status: " + error.response.status);
             callback(null, {
                 statusCode: error.response.status,
-                body: JSON.stringify(error.response.data)
+                body: String(error.response.data)
             })
         } else if (error.request) {
             console.log(error.request);
