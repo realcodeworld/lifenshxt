@@ -35,10 +35,10 @@ exports.handler = function(event, context, callback) {
     .then( data => {
             console.log(`Submitted to Buttondown: ${bodyToPost.email}`)
             console.log(`Response: ${data.json()}`)
-            callback(null, {
+            return {
                 statusCode: 201,
                 body: String(data)
-            })
+            }
     })
     .catch ( error => {
         // Error 😨
@@ -46,22 +46,22 @@ exports.handler = function(event, context, callback) {
             console.log("data: " + error.response.data);
             console.log(error);
             console.log("status: " + error.response.status);
-            callback(null, {
+            return {
                 statusCode: error.response.status,
                 body: String(error.response.data)
-            })
+            }
         } else if (error.request) {
             console.log(error.request);
-            callback(null, {
+            return {
                 statusCode: 502,
                 body: String(error.request)
-            })
+            }
         } else {
             console.log('Error', error.message);
-            callback(null, {
+            return {
                 statusCode: 500,
                 body: String(error.message)
-            })
+            }
         }
     })
 }
