@@ -11,28 +11,14 @@ exports.handler = function(event, context, callback) {
     try {
         body = JSON.parse(event.body)
         console.log("success")
-        console.log(body)
-        console.log(body.email)
         console.log(body.payload.email)
-
     } catch (e) {
         body = event.body
         console.log(e)
     }
 
-    // Bail if email is missing
-    if (!body.email) {
-        console.log("missing email")
-        return callback(null, {
-        statusCode: 400,
-        body: JSON.stringify({
-                error: 'missing email'
-            })
-        })
-    }
-
     const bodyToPost = {
-        email: body.email
+        email: body.payload.email
     }
 
     console.log(bodyToPost)
