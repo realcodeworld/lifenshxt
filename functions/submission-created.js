@@ -36,7 +36,7 @@ exports.handler = function(event, context, callback) {
             console.log(`Submitted to Buttondown: ${bodyToPost.email}`)
             callback(null, {
                 statusCode: 200,
-                body: data
+                body: JSON.stringify(data)
             })
     })
     .catch ( error => {
