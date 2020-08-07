@@ -32,36 +32,42 @@ exports.handler = function(event, context, callback) {
     }
 
     return axios.post(url, bodyToPost, options)
-    .then( data => {
-            console.log(`Submitted to Buttondown: ${bodyToPost.email}`)
-            console.log(`Response: ${data.json()}`)
-            return callback(null, {
-                statusCode: 201,
-                body: String(data)
-            })
-    })
-    .catch ( error => {
-        // Error 😨
-        if (error.response) {
-            console.log("data: " + error.response.data);
-            console.log(error);
-            console.log("status: " + error.response.status);
-            return callback(null, {
-                statusCode: error.response.status,
-                body: String(error.response.data)
-            })
-        } else if (error.request) {
-            console.log(error.request);
-            return callback(null, {
-                statusCode: 502,
-                body: String(error.request)
-            })
-        } else {
-            console.log('Error', error.message);
-            return callback(null, {
-                statusCode: 500,
-                body: String(error.message)
-            })
-        }
-    })
-}
+    .then(function(response){
+      console.log(`status:${response.status}` )
+      console.log(`data:${response.data}` )
+      console.log(`headers:${response.headers}` )
+  
+      if (response.headers['content-type'] === 'application/x-www-form-urlencoded') {
+        // Do redirect for non JS enabled browsers
+        return callback(null, {
+          statusCode: 302,
+          headers: {
+            Location: '/thanks.html',
+            'Cache-Control': 'no-cache',
+          },
+          body: JSON.stringify({})
+        });
+      }
+  
+      // Return data to AJAX request
+      return callback(null, {
+        statusCode: 200,
+        body: JSON.stringify({ emailAdded: true })
+      })
+    }).catch(function(error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+      console.log(error.config);
+    });
+  };
