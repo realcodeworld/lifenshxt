@@ -34,9 +34,10 @@ exports.handler = function(event, context, callback) {
     return axios.post(url, bodyToPost, options)
     .then( data => {
             console.log(`Submitted to Buttondown: ${bodyToPost.email}`)
+            console.log(`Response: ${data}`)
             callback(null, {
                 statusCode: 200,
-                body: JSON.stringify(data)
+                body: String(data)
             })
     })
     .catch ( error => {
